@@ -1,7 +1,9 @@
-import type { customers, payments } from "@/db/schema";
+import type { balances, customers, payments, products } from "@/db/schema";
 
 type PaymentRow = typeof payments.$inferSelect;
 type CustomerRow = typeof customers.$inferSelect;
+type ProductRow = typeof products.$inferSelect;
+type BalanceRow = typeof balances.$inferSelect;
 
 export type PaymentRecord = PaymentRow & {
   customerName: string;
@@ -45,6 +47,29 @@ export function serializeCustomer(row: CustomerRow) {
     name: row.name,
     email: row.email,
     created: row.createdAt,
+  };
+}
+
+export function serializeProduct(row: ProductRow) {
+  return {
+    id: row.id,
+    object: "product" as const,
+    name: row.name,
+    description: row.description,
+    price: row.priceMinor,
+    currency: row.currency,
+    active: row.active,
+    created: row.createdAt,
+  };
+}
+
+export function serializeBalance(row: BalanceRow) {
+  return {
+    object: "balance" as const,
+    currency: row.currency,
+    available: row.availableMinor,
+    pending: row.pendingMinor,
+    updated: row.updatedAt,
   };
 }
 
