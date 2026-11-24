@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.github
+.data
+data
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.*
+!.env.example
+coverage
+docs
+*.md
+tsconfig.tsbuildinfo
+.DS_Store
