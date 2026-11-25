@@ -7,6 +7,7 @@ import {
 import { Suspense } from "react";
 import { listEnvelope, serializePayment } from "@/features/payments/api";
 import { serializeFilters, parseFilters } from "@/features/payments/filters";
+import { PaymentsFilterBar } from "@/features/payments/components/filters/PaymentsFilterBar";
 import { PaymentsTable } from "@/features/payments/components/PaymentsTable";
 import { PaymentsTableSkeleton } from "@/features/payments/components/PaymentsTableSkeleton";
 import { paymentsQueryKey } from "@/features/payments/hooks/use-payments-query";
@@ -42,7 +43,10 @@ async function PaymentsContent({
   return (
     <QueryProvider>
       <HydrationBoundary state={dehydrate(client)}>
-        <PaymentsTable />
+        <div className="space-y-4">
+          <PaymentsFilterBar />
+          <PaymentsTable />
+        </div>
       </HydrationBoundary>
     </QueryProvider>
   );
