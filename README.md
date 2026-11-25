@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chargeblast Stripe Payments
 
-## Getting Started
+Front-end assessment replica of the Stripe Dashboard **Payments** screen. Next.js App Router, SQLite + Drizzle, TanStack Query, and a Stripe-shaped HTTP API served by this app.
 
-First, run the development server:
+## Credentials
+
+| Email | Password |
+| --- | --- |
+| `demo@stripe.test` | `demo1234` |
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+nvm use 24
+pnpm install
+pnpm db:migrate
+pnpm db:seed -- --reset
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000), sign in, and open **Payments**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `pnpm db:generate` — drizzle-kit generate
+- `pnpm db:migrate` — apply migrations
+- `pnpm db:seed -- --reset` — deterministic seed (`SEED=20261123`)
+- `pnpm test` — Node test runner
+- `pnpm build` / `pnpm start`
 
-## Learn More
+## Pagination note
 
-To learn more about Next.js, take a look at the following resources:
+List endpoints use **offset pagination** (`page`, `page_size`) instead of Stripe’s cursor pagination (`starting_after` / `ending_before`). Cursor parameters return `400`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Docker / Dokploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Mount a persistent volume at `/app/data` for SQLite (`stripe.db`) and CSV exports.
 
-## Deploy on Vercel
+```bash
+docker build -t chargeblast-stripe-payments .
+docker run --rm -p 3000:3000 -v stripe-data:/app/data chargeblast-stripe-payments
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The entrypoint runs `node scripts/migrate.mjs`, seeds when `payments` is empty, then `node server.js`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Health check: `GET /api/health`.
+
+Compose example: `docker-compose.yml` (expects an external `dokploy-network`).
