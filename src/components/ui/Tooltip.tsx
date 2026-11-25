@@ -21,7 +21,7 @@ export function Tooltip({ content, children, side = "top", className }: TooltipP
             side={side}
             sideOffset={6}
             className={cn(
-              "z-50 max-w-xs rounded-[var(--radius-control)] border border-border bg-bg px-2.5 py-1.5 text-xs text-text shadow-md",
+              "z-50 max-w-xs rounded-control border border-border bg-bg px-2.5 py-1.5 text-xs text-text shadow-md",
               className,
             )}
           >

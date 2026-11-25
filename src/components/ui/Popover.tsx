@@ -29,7 +29,7 @@ export function Popover({
           align={align}
           sideOffset={6}
           className={cn(
-            "z-50 w-72 rounded-[var(--radius-control)] border border-border bg-bg p-3 text-sm text-text shadow-md outline-none",
+            "z-50 w-72 rounded-control border border-border bg-bg p-3 text-sm text-text shadow-md outline-none",
             className,
           )}
         >

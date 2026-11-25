@@ -33,7 +33,7 @@ export function DropdownMenu({
           align={align}
           sideOffset={6}
           className={cn(
-            "z-50 min-w-44 overflow-hidden rounded-[var(--radius-control)] border border-border bg-bg p-1 shadow-md",
+            "z-50 min-w-44 overflow-hidden rounded-control border border-border bg-bg p-1 shadow-md",
             className,
           )}
         >
@@ -43,7 +43,7 @@ export function DropdownMenu({
               disabled={item.disabled}
               onSelect={item.onSelect}
               className={cn(
-                "flex h-10 min-h-10 cursor-pointer items-center rounded-[var(--radius-pill)] px-2 text-sm outline-none data-[highlighted]:bg-surface data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+                "flex h-10 min-h-10 cursor-pointer items-center rounded-pill px-2 text-sm outline-none data-highlighted:bg-surface data-disabled:pointer-events-none data-disabled:opacity-50",
                 item.danger ? "text-danger-fg" : "text-text",
               )}
             >

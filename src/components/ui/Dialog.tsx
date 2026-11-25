@@ -34,7 +34,7 @@ export function Dialog({
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-text/40" />
         <DialogPrimitive.Content
           className={cn(
-            "fixed top-1/2 left-1/2 z-50 w-[min(100%-2rem,28rem)] -translate-x-1/2 -translate-y-1/2 rounded-[var(--radius-control)] border border-border bg-bg p-5 shadow-lg focus:outline-none",
+            "fixed top-1/2 left-1/2 z-50 w-[min(100%-2rem,28rem)] -translate-x-1/2 -translate-y-1/2 rounded-control border border-border bg-bg p-5 shadow-lg focus:outline-none",
             className,
           )}
         >
