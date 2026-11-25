@@ -1,5 +1,6 @@
 "use client";
 
+import { ExportWidget } from "@/features/exports/components/ExportWidget";
 import { AmountFilter } from "@/features/payments/components/filters/AmountFilter";
 import { DateRangeFilter } from "@/features/payments/components/filters/DateRangeFilter";
 import { FilterChips } from "@/features/payments/components/filters/FilterChips";
@@ -53,6 +54,7 @@ export function PaymentsFilterBar() {
           currency={filters.currency}
           onChange={(next) => setFilters((current) => ({ ...current, ...next, page: 1 }))}
         />
+        <ExportWidget />
       </div>
       <FilterChips
         filters={filters}
