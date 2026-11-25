@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import localFont from "next/font/local";
+import { parseTheme } from "@/lib/theme";
 import "./globals.css";
 
 const inter = localFont({
@@ -30,6 +32,8 @@ const jetbrainsMono = localFont({
   display: "swap",
 });
 
+export const instant = false;
+
 export const metadata: Metadata = {
   title: {
     default: "Payments — Stripe",
@@ -47,11 +51,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const jar = await cookies();
+  const theme = parseTheme(jar.get("theme")?.value);
+
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased ${theme === "dark" ? "dark" : ""}`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text font-sans">
         {children}
