@@ -7,7 +7,7 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-[var(--radius-control)] bg-border/70",
+        "animate-pulse rounded-control bg-border/70",
         className,
       )}
       {...props}

@@ -40,7 +40,7 @@ export function Select({
       <SelectPrimitive.Trigger
         aria-label={ariaLabel}
         className={cn(
-          "inline-flex h-10 min-h-10 w-full items-center justify-between gap-2 rounded-[var(--radius-control)] border border-border bg-bg px-3 text-sm text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50",
+          "inline-flex h-10 min-h-10 w-full items-center justify-between gap-2 rounded-control border border-border bg-bg px-3 text-sm text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
       >
@@ -52,14 +52,14 @@ export function Select({
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
           position="popper"
-          className="z-50 overflow-hidden rounded-[var(--radius-control)] border border-border bg-bg shadow-md"
+          className="z-50 overflow-hidden rounded-control border border-border bg-bg shadow-md"
         >
           <SelectPrimitive.Viewport className="p-1">
             {options.map((option) => (
               <SelectPrimitive.Item
                 key={option.value}
                 value={option.value}
-                className="relative flex h-10 min-h-10 cursor-pointer items-center rounded-[var(--radius-pill)] py-1.5 pr-8 pl-2 text-sm text-text outline-none data-[highlighted]:bg-surface"
+                className="relative flex h-10 min-h-10 cursor-pointer items-center rounded-pill py-1.5 pr-8 pl-2 text-sm text-text outline-none data-[highlighted]:bg-surface"
               >
                 <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                 <SelectPrimitive.ItemIndicator className="absolute right-2">
